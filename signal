@@ -1,0 +1,41 @@
+% Define the constellation points for QPSK modulation
+konst_qpsk = exp(1i*[pi/4 3*pi/4 5*pi/4 7*pi/4]).';
+% Generate QPSK symbols
+qpsk_indices = randi([1 4], 20000, 1); % Generate random indices between 1 and 4
+qpsk = konst_qpsk(qpsk_indices); % Select constellation points based on the random 
+indices
+% Plot the QPSK symbols
+plot(qpsk,'o');
+xlabel('Re');
+ylabel('Im');
+axis([-2 2 -2 2]);
+title('QPSK Constellation Diagram');
+BPSK:MATLAB CODE:
+% Define the constellation points for BPSK modulation
+konst_bpsk = exp(1i*[pi 0]).';
+% Generate BPSK symbols
+bpsk_indices = randi([1 2], 20000, 1); % Generate random indices (1 or 2)
+bpsk = konst_bpsk(bpsk_indices); % Select constellation points based on the random 
+indices
+% Plot the BPSK symbols
+plot(bpsk,'o');
+xlabel('Re');
+ylabel('Im');
+axis([-2 2 -2 2]);
+title('BPSK Constellation Diagram');
+QAM MATLAB CODE:
+aqam = [-7 -5 -3 -1 1 3 5 7];
+A = repmat(aqam, 8, 1);
+B = flipud(A); % Corrected: flipud(A) instead of flipud('A')
+konst_qam = A + 1i * B; % Corrected: 'j' replaced with 1i
+konst_qam = konst_qam(:);
+% Generate QAM symbols
+qam_indices = randi([1 64], 20000, 1); % Corrected: randi([1 64]) instead of 
+randi([1 64]+1)
+qam = konst_qam(qam_indices);
+% Plot QAM symbols
+plot(qam, 'o');
+axis([-8 8 -8 8]);
+xlabel('Re');
+ylabel('Im');
+title('QAM Constellation Diagram');
